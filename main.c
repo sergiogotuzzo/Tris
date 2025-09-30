@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-char last = 'X';
+char lastPlayer = 'X';
 
 void printtable(char c1, char c2, char c3, char c4, char c5, char c6, char c7, char c8, char c9) {
     printf("%c %c %c\n", c1, c2, c3);
@@ -9,19 +9,19 @@ void printtable(char c1, char c2, char c3, char c4, char c5, char c6, char c7, c
     printf("%c %c %c\n", c7, c8, c9);
 }
 
-char lastPlayerUpdater(char lastPlayer) {
+void updateLastPlayer() {
     if (lastPlayer == 'X') {
-        return 'O';
+        lastPlayer = 'O';
+    } else {
+        lastPlayer = 'X';
     }
-
-    return 'X';
 }
 
 bool checkCell(char c) {
     if (c != '-') {
         printf("This cell is already taken by %c\n", c);
 
-        last = lastPlayerUpdater(last);
+        updateLastPlayer();
 
         return false;
     }
@@ -37,23 +37,23 @@ int main() {
     bool lost = true;
 
     while (lost) {
-        last = lastPlayerUpdater(last);
+        updateLastPlayer();
 
-        printf("It's %c turn!: ", last);
+        printf("It's %c turn!: ", lastPlayer);
 
         int c;
 
         scanf("%d", &c);
 
-        if (c == 1 && checkCell(c1)) c1 = last;
-        if (c == 2 && checkCell(c2)) c2 = last;
-        if (c == 3 && checkCell(c3)) c3 = last;
-        if (c == 4 && checkCell(c4)) c4 = last;
-        if (c == 5 && checkCell(c5)) c5 = last;
-        if (c == 6 && checkCell(c6)) c6 = last;
-        if (c == 7 && checkCell(c7)) c7 = last;
-        if (c == 8 && checkCell(c8)) c8 = last;
-        if (c == 9 && checkCell(c9)) c9 = last;
+        if (c == 1 && checkCell(c1)) c1 = lastPlayer;
+        else if (c == 2 && checkCell(c2)) c2 = lastPlayer;
+        else if (c == 3 && checkCell(c3)) c3 = lastPlayer;
+        else if (c == 4 && checkCell(c4)) c4 = lastPlayer;
+        else if (c == 5 && checkCell(c5)) c5 = lastPlayer;
+        else if (c == 6 && checkCell(c6)) c6 = lastPlayer;
+        else if (c == 7 && checkCell(c7)) c7 = lastPlayer;
+        else if (c == 8 && checkCell(c8)) c8 = lastPlayer;
+        else if (c == 9 && checkCell(c9)) c9 = lastPlayer;
 
         printtable(c1, c2, c3, c4, c5, c6, c7, c8, c9);
 
@@ -68,7 +68,7 @@ int main() {
             (c3 == c5 && c5 == c7 && c3 != '-' && c5 != '-' && c7 != '-')
             ) {
                 lost = false;
-                printf("%c won!", last);
+                printf("%c won!", lastPlayer);
             }
     }
 
