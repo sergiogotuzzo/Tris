@@ -19,7 +19,7 @@ char lastPlayerUpdater(char lastPlayer) {
 
 bool checkCell(char c) {
     if (c != '-') {
-        printf("There is already an %c in this cell\n", c);
+        printf("This cell is already taken by %c\n", c);
 
         last = lastPlayerUpdater(last);
 
