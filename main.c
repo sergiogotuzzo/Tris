@@ -39,7 +39,7 @@ int main() {
     while (lost) {
         updateLastPlayer();
 
-        printf("It's %c turn!: ", lastPlayer);
+        printf("It's %c turn!\n", lastPlayer);
 
         int c;
 
@@ -68,7 +68,7 @@ int main() {
             (c3 == c5 && c5 == c7 && c3 != '-' && c5 != '-' && c7 != '-')
             ) {
                 lost = false;
-                printf("%c won!", lastPlayer);
+                printf("%c won!\n", lastPlayer);
             }
     }
 
