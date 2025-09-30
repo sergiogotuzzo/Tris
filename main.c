@@ -16,6 +16,8 @@ int main() {
     char last = 'X';
    
     while (lost) {
+        printf("It's %c turn!: ", last);
+
         int c;
        
         scanf("%d", &c);
