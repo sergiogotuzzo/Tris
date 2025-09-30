@@ -31,9 +31,9 @@ bool checkCell(char c) {
 
 int main() {
     char c1 = '-', c2 = '-', c3 = '-', c4 = '-', c5 = '-', c6 = '-', c7 = '-', c8 = '-', c9 = '-';
-   
+
     printtable(c1, c2, c3, c4, c5, c6, c7, c8, c9);
-   
+
     bool lost = true;
 
     while (lost) {
@@ -42,7 +42,7 @@ int main() {
         printf("It's %c turn!: ", last);
 
         int c;
-       
+
         scanf("%d", &c);
 
         if (c == 1 && checkCell(c1)) c1 = last;
@@ -56,7 +56,7 @@ int main() {
         if (c == 9 && checkCell(c9)) c9 = last;
 
         printtable(c1, c2, c3, c4, c5, c6, c7, c8, c9);
-       
+
         if (
             ((c1 == c2) && (c2 == c3) && c1 != '-' && c2 != '-' && c3 != '-') ||
             ((c4 == c5) && (c5 == c6) && c4 != '-' && c5 != '-' && c6 != '-') ||
