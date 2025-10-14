@@ -34,9 +34,9 @@ int main() {
 
     printtable(c1, c2, c3, c4, c5, c6, c7, c8, c9);
 
-    bool lost = true;
+    bool play = true;
 
-    while (lost) {
+    while (play) {
         updateLastPlayer();
 
         int c;
@@ -68,7 +68,7 @@ int main() {
             (c1 == c5 && c5 == c9 && c1 != '-' && c5 != '-' && c9 != '-') ||
             (c3 == c5 && c5 == c7 && c3 != '-' && c5 != '-' && c7 != '-')
             ) {
-                lost = false;
+                play = false;
                 printf("%c won!\n", lastPlayer);
             }
     }
