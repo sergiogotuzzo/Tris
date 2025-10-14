@@ -44,7 +44,7 @@ int main() {
         do {
             printf("It's %c turn!\n", lastPlayer);
             scanf("%d", &c);
-        } while (c > 1 && c < 9);
+        } while (c < 1 || c > 9);
 
         if (c == 1 && checkCell(c1)) c1 = lastPlayer;
         else if (c == 2 && checkCell(c2)) c2 = lastPlayer;
