@@ -33,14 +33,35 @@ bool checkCell(char c) {
     return true;
 }
 
+bool checkGame(char cells[9]) {
+    if (
+            (cells[0] == cells[1] && cells[1] == cells[2] && cells[0] != '-' && cells[1] != '-' && cells[2] != '-') ||
+            (cells[3] == cells[4] && cells[4] == cells[5] && cells[3] != '-' && cells[4] != '-' && cells[5] != '-') ||
+            (cells[6] == cells[7] && cells[7] == cells[8] && cells[6] != '-' && cells[7] != '-' && cells[8] != '-') ||
+            (cells[0] == cells[3] && cells[3] == cells[6] && cells[0] != '-' && cells[3] != '-' && cells[6] != '-') ||
+            (cells[1] == cells[4] && cells[4] == cells[7] && cells[1] != '-' && cells[4] != '-' && cells[7] != '-') ||
+            (cells[2] == cells[5] && cells[5] == cells[8] && cells[2] != '-' && cells[5] != '-' && cells[8] != '-') ||
+            (cells[0] == cells[4] && cells[4] == cells[8] && cells[0] != '-' && cells[4] != '-' && cells[8] != '-') ||
+            (cells[2] == cells[4] && cells[4] == cells[6] && cells[2] != '-' && cells[4] != '-' && cells[6] != '-')
+        ) {
+            printf("%c won!\n", lastPlayer);
+
+            return false;
+        } else if (cells[0] != '-' && cells[1] != '-' && cells[2] != '-' && cells[3] != '-' && cells[4] != '-' && cells[5] != '-' && cells[6] != '-' && cells[7] != '-' && cells[8] != '-') {
+            printf("Tie!");
+
+            return false;
+        }
+
+    return true;
+}
+
 int main() {
     char cells[9] = {'-', '-', '-', '-', '-', '-', '-', '-', '-'};
 
     printtable(cells);
 
-    bool play = true;
-
-    while (play) {
+    while (checkGame(cells)) {
         updateLastPlayer();
 
         int c;
@@ -53,23 +74,6 @@ int main() {
         if (checkCell(cells[c - 1])) cells[c - 1] = lastPlayer;
 
         printtable(cells);
-
-        if (
-            (cells[0] == cells[1] && cells[1] == cells[2] && cells[0] != '-' && cells[1] != '-' && cells[2] != '-') ||
-            (cells[3] == cells[4] && cells[4] == cells[5] && cells[3] != '-' && cells[4] != '-' && cells[5] != '-') ||
-            (cells[6] == cells[7] && cells[7] == cells[8] && cells[6] != '-' && cells[7] != '-' && cells[8] != '-') ||
-            (cells[0] == cells[3] && cells[3] == cells[6] && cells[0] != '-' && cells[3] != '-' && cells[6] != '-') ||
-            (cells[1] == cells[4] && cells[4] == cells[7] && cells[1] != '-' && cells[4] != '-' && cells[7] != '-') ||
-            (cells[2] == cells[5] && cells[5] == cells[8] && cells[2] != '-' && cells[5] != '-' && cells[8] != '-') ||
-            (cells[0] == cells[4] && cells[4] == cells[8] && cells[0] != '-' && cells[4] != '-' && cells[8] != '-') ||
-            (cells[2] == cells[4] && cells[4] == cells[6] && cells[2] != '-' && cells[4] != '-' && cells[6] != '-')
-            ) {
-                play = false;
-                printf("%c won!\n", lastPlayer);
-            } else if (cells[0] != '-' && cells[1] != '-' && cells[2] != '-' && cells[3] != '-' && cells[4] != '-' && cells[5] != '-' && cells[6] != '-' && cells[7] != '-' && cells[8] != '-') {
-                play = false;
-                printf("Tie!");
-            }
     }
 
     return 0;
