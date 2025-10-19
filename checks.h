@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include "prints.h"
 
 bool checkEmptyCell(char c) {
     return c == '-';
