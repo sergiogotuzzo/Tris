@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-void printtable(char cells[9]) {
+void printGame(char cells[9]) {
     for (int i = 0; i < 9; i++) {
         printf("%c ", cells[i]);
 
@@ -61,7 +61,7 @@ int main() {
         if (checkEmptyCell(cells[c - 1])) {
             cells[c - 1] = lastPlayer;
 
-            printtable(cells);
+            printGame(cells);
 
             if (checkGame(cells, lastPlayer, false)) {
                 if (lastPlayer == 'X') {
