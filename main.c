@@ -33,7 +33,7 @@ bool checkEqualCells(char cells[9], int c1, int c2, int c3) {
     return cells[c1] == cells[c2] && cells[c2] == cells[c3];
 }
 
-bool checkGame(char cells[9], char lastPlayer, bool shouldResultBePrinted) {
+bool keepPlaying(char cells[9], char lastPlayer, bool shouldResultBePrinted) {
     if (checkEqualCells(cells, 0, 1, 2) && !checkEmptyCell(cells[0]) && !checkEmptyCell(cells[1]) && !checkEmptyCell(cells[2])) {
         printResult(shouldResultBePrinted, 0, 1, 2, lastPlayer);
 
@@ -94,7 +94,7 @@ int main() {
 
             printGame(cells);
 
-            if (checkGame(cells, lastPlayer, false)) {
+            if (keepPlaying(cells, lastPlayer, false)) {
                 if (lastPlayer == 'X') {
                     lastPlayer = 'O';
                 } else {
@@ -104,7 +104,7 @@ int main() {
         } else {
             printf("This cell is already taken by %c\n", cells[c - 1]);
         }
-    } while (checkGame(cells, lastPlayer, true));
+    } while (keepPlaying(cells, lastPlayer, true));
 
     return 0;
 }
