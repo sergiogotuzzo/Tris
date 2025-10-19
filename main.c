@@ -15,7 +15,7 @@ bool checkCell(char c) {
     return c == '-';
 }
 
-bool checkGame(char cells[9], char lastPlayer) {
+bool checkGame(char cells[9], char lastPlayer, bool printResult) {
     if (
             (cells[0] == cells[1] && cells[1] == cells[2] && cells[0] != '-' && cells[1] != '-' && cells[2] != '-') ||
             (cells[3] == cells[4] && cells[4] == cells[5] && cells[3] != '-' && cells[4] != '-' && cells[5] != '-') ||
@@ -26,11 +26,15 @@ bool checkGame(char cells[9], char lastPlayer) {
             (cells[0] == cells[4] && cells[4] == cells[8] && cells[0] != '-' && cells[4] != '-' && cells[8] != '-') ||
             (cells[2] == cells[4] && cells[4] == cells[6] && cells[2] != '-' && cells[4] != '-' && cells[6] != '-')
         ) {
-            printf("%c won!\n", lastPlayer);
+            if (printResult) {
+                printf("%c won!\n", lastPlayer);
+            }
 
             return false;
         } else if (cells[0] != '-' && cells[1] != '-' && cells[2] != '-' && cells[3] != '-' && cells[4] != '-' && cells[5] != '-' && cells[6] != '-' && cells[7] != '-' && cells[8] != '-') {
-            printf("Tie!");
+            if (printResult) {
+                printf("Tie!\n");
+            }
 
             return false;
         }
@@ -55,7 +59,7 @@ int main() {
 
             printtable(cells);
 
-            if (checkGame(cells, lastPlayer)) {
+            if (checkGame(cells, lastPlayer, false)) {
                 if (lastPlayer == 'X') {
                     lastPlayer = 'O';
                 } else {
@@ -65,7 +69,7 @@ int main() {
         } else {
             printf("This cell is already taken by %c\n", cells[c - 1]);
         }
-    } while (checkGame(cells, lastPlayer));
+    } while (checkGame(cells, lastPlayer, true));
 
     return 0;
 }
