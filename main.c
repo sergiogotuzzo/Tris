@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-char lastPlayer = 'X';
-
 void printtable(char cells[9]) {
     for (int i = 0; i < 9; i++) {
         printf("%c ", cells[i]);
@@ -13,19 +11,11 @@ void printtable(char cells[9]) {
     }
 }
 
-void updateLastPlayer() {
-    if (lastPlayer == 'X') {
-        lastPlayer = 'O';
-    } else {
-        lastPlayer = 'X';
-    }
-}
-
 bool checkCell(char c) {
     return c == '-';
 }
 
-bool checkGame(char cells[9]) {
+bool checkGame(char cells[9], char lastPlayer) {
     if (
             (cells[0] == cells[1] && cells[1] == cells[2] && cells[0] != '-' && cells[1] != '-' && cells[2] != '-') ||
             (cells[3] == cells[4] && cells[4] == cells[5] && cells[3] != '-' && cells[4] != '-' && cells[5] != '-') ||
@@ -50,6 +40,7 @@ bool checkGame(char cells[9]) {
 
 int main() {
     char cells[9] = {'-', '-', '-', '-', '-', '-', '-', '-', '-'};
+    char lastPlayer = 'X';
 
     do {
         int c;
@@ -64,13 +55,17 @@ int main() {
 
             printtable(cells);
 
-            if (checkGame(cells)) {
-                updateLastPlayer();
+            if (checkGame(cells, lastPlayer)) {
+                if (lastPlayer == 'X') {
+                    lastPlayer = 'O';
+                } else {
+                    lastPlayer = 'X';
+                }
             }
         } else {
             printf("This cell is already taken by %c\n", cells[c - 1]);
         }
-    } while (checkGame(cells));
+    } while (checkGame(cells, lastPlayer));
 
     return 0;
 }
