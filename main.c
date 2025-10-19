@@ -17,21 +17,21 @@ bool checkCell(char c) {
 
 bool checkGame(char cells[9], char lastPlayer, bool printResult) {
     if (
-            (cells[0] == cells[1] && cells[1] == cells[2] && cells[0] != '-' && cells[1] != '-' && cells[2] != '-') ||
-            (cells[3] == cells[4] && cells[4] == cells[5] && cells[3] != '-' && cells[4] != '-' && cells[5] != '-') ||
-            (cells[6] == cells[7] && cells[7] == cells[8] && cells[6] != '-' && cells[7] != '-' && cells[8] != '-') ||
-            (cells[0] == cells[3] && cells[3] == cells[6] && cells[0] != '-' && cells[3] != '-' && cells[6] != '-') ||
-            (cells[1] == cells[4] && cells[4] == cells[7] && cells[1] != '-' && cells[4] != '-' && cells[7] != '-') ||
-            (cells[2] == cells[5] && cells[5] == cells[8] && cells[2] != '-' && cells[5] != '-' && cells[8] != '-') ||
-            (cells[0] == cells[4] && cells[4] == cells[8] && cells[0] != '-' && cells[4] != '-' && cells[8] != '-') ||
-            (cells[2] == cells[4] && cells[4] == cells[6] && cells[2] != '-' && cells[4] != '-' && cells[6] != '-')
+            (cells[0] == cells[1] && cells[1] == cells[2] && !checkCell(cells[0]) && !checkCell(cells[1]) && !checkCell(cells[2])) ||
+            (cells[3] == cells[4] && cells[4] == cells[5] && !checkCell(cells[3]) && !checkCell(cells[4]) && !checkCell(cells[5])) ||
+            (cells[6] == cells[7] && cells[7] == cells[8] && !checkCell(cells[6]) && !checkCell(cells[7]) && !checkCell(cells[8])) ||
+            (cells[0] == cells[3] && cells[3] == cells[6] && !checkCell(cells[0]) && !checkCell(cells[3]) && !checkCell(cells[6])) ||
+            (cells[1] == cells[4] && cells[4] == cells[7] && !checkCell(cells[1]) && !checkCell(cells[4]) && !checkCell(cells[7])) ||
+            (cells[2] == cells[5] && cells[5] == cells[8] && !checkCell(cells[2]) && !checkCell(cells[5]) && !checkCell(cells[8])) ||
+            (cells[0] == cells[4] && cells[4] == cells[8] && !checkCell(cells[0]) && !checkCell(cells[4]) && !checkCell(cells[8])) ||
+            (cells[2] == cells[4] && cells[4] == cells[6] && !checkCell(cells[2]) && !checkCell(cells[4]) && !checkCell(cells[6]))
         ) {
             if (printResult) {
                 printf("%c won!\n", lastPlayer);
             }
 
             return false;
-        } else if (cells[0] != '-' && cells[1] != '-' && cells[2] != '-' && cells[3] != '-' && cells[4] != '-' && cells[5] != '-' && cells[6] != '-' && cells[7] != '-' && cells[8] != '-') {
+        } else if (!checkCell(cells[0]) && !checkCell(cells[1]) && !checkCell(cells[2]) && !checkCell(cells[3]) && !checkCell(cells[4]) && !checkCell(cells[5]) && !checkCell(cells[6]) && !checkCell(cells[7]) && !checkCell(cells[8])) {
             if (printResult) {
                 printf("Tie!\n");
             }
